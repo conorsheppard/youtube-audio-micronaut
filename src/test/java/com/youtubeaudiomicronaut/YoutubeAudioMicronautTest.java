@@ -9,13 +9,15 @@ import jakarta.inject.Inject;
 
 @MicronautTest
 class YoutubeAudioMicronautTest {
-
     @Inject
     EmbeddedApplication<?> application;
+
+    public YoutubeAudioMicronautTest() {
+        System.setProperty("micronaut.server.port", "0");
+    }
 
     @Test
     void testItWorks() {
         Assertions.assertTrue(application.isRunning());
     }
-
 }
