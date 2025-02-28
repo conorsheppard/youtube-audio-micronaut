@@ -2,6 +2,9 @@ SHELL := /bin/bash
 
 default: run
 
+clean:
+	mvn clean
+
 run:
 	java -jar target/youtube-audio-micronaut-0.1.jar "https://www.youtube.com/watch?v=NhHQSvVVBfM"
 
@@ -13,4 +16,4 @@ cli-debug-run:
 
 
 .SILENT:
-.PHONY: default run
+.PHONY: default clean run build cli-debug-run
