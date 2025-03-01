@@ -1,24 +1,58 @@
-## Micronaut 4.7.5 Documentation
+# YouTube Audio Downloader (Micronaut)
 
-- [User Guide](https://docs.micronaut.io/4.7.5/guide/index.html)
-- [API Reference](https://docs.micronaut.io/4.7.5/api/index.html)
-- [Configuration Reference](https://docs.micronaut.io/4.7.5/guide/configurationreference.html)
-- [Micronaut Guides](https://guides.micronaut.io/index.html)
----
+## Overview
+Cloud-native Micronaut application that downloads audio from YouTube videos using `yt-dlp`.  
+Java wrapper around `yt-dlp` that enables cloud deployment of containerised download jobs - it's part of a larger application currently under development.  
+It is optimized for GraalVM native image and designed for deployment in a Kubernetes cluster.
 
-- [Micronaut Maven Plugin documentation](https://micronaut-projects.github.io/micronaut-maven-plugin/latest/)
-## Feature micronaut-aot documentation
+## Features
+- Downloads audio from YouTube videos in `mp3` format
+- Reads video URLs from a  command-line input using Picocli (planned: Kafka queue read)
+- Uses `yt-dlp` for audio extraction
+- Optimized for GraalVM native image
+- Uses Picocli for command-line parsing and execution
 
-- [Micronaut AOT documentation](https://micronaut-projects.github.io/micronaut-aot/latest/guide/)
+## Prerequisites
+- Java 17+ (developed with Java 23)
+- Micronaut 4+
+- Maven
+- `yt-dlp` installed (`brew install yt-dlp` on macOS, or install from [yt-dlp GitHub](https://github.com/yt-dlp/yt-dlp))
+- (Optional) Docker and Kubernetes for deployment
+
+## Installation
+Clone the repository:
+```sh
+git clone https://github.com/your-repo/youtube-audio-micronaut.git
+cd youtube-audio-micronaut
+```
+
+Build the application:
+```sh
+make clean build
+```
+
+## Usage
+Run the application:
+```sh
+./shell/run.sh "https://www.youtube.com/watch?v=example"
+```
+
+## Deployment
+To build a GraalVM native image:
+```sh
+mvn package -Pnative
+```
 
 
-## Feature maven-enforcer-plugin documentation
+## File Downloads
 
-- [https://maven.apache.org/enforcer/maven-enforcer-plugin/](https://maven.apache.org/enforcer/maven-enforcer-plugin/)
+The downloaded audio files are saved in the current working directory of the application under:
 
+```text
+/tmp/
+```
 
-## Feature serialization-jackson documentation
-
-- [Micronaut Serialization Jackson Core documentation](https://micronaut-projects.github.io/micronaut-serialization/latest/guide/)
-
-
+Each file is saved in the format:
+```text
+<title>.mp3
+```

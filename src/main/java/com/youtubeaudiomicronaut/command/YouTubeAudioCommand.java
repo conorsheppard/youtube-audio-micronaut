@@ -19,7 +19,6 @@ public class YouTubeAudioCommand implements Runnable {
 
     @Override
     public void run() {
-        log.info("Downloading audio for video: {}", videoUrl);
         youTubeAudioService.downloadAudio(videoUrl);
     }
 }
