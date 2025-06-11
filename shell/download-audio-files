@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+# Read clipboard contents (macOS uses pbpaste)
+clipboard=$(pbpaste)
+
+# Convert clipboard contents into an array of URLs
+# Split on newlines or spaces
+IFS=$'\n' read -d '' -A urls <<< "$clipboard"
+
+# Loop through each URL and call the existing download script
+for url in "${urls[@]}"; do
+  # Skip empty lines
+  if [[ -n "$url" ]]; then
+    echo "Downloading: $url"
+    ./shell/download.sh "$url"
+  fi
+done
