@@ -1,0 +1,62 @@
+{
+  "name": "YouTube Audio Micronaut (Simple)",
+  "image": "mcr.microsoft.com/devcontainers/java:21-bullseye",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/java:1": {
+      "version": "21",
+      "installMaven": "true",
+      "installGradle": "false"
+    },
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/graalvm:1": {
+      "version": "21.0.1",
+      "variant": "ce"
+    }
+  },
+
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-maven",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-test",
+        "redhat.java",
+        "vscjava.vscode-java-dependency",
+        "vscjava.vscode-java-snippets",
+        "ms-vscode.vscode-json",
+        "yzhang.markdown-all-in-one",
+        "ms-vscode.vscode-yaml"
+      ],
+      "settings": {
+        "java.configuration.updateBuildConfiguration": "automatic",
+        "java.compile.nullAnalysis.mode": "automatic",
+        "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+        "java.format.settings.profile": "GoogleStyle",
+        "java.format.onType.enabled": true,
+        "java.saveActions.organizeImports": true,
+        "maven.executable.path": "/usr/local/bin/mvn",
+        "maven.terminal.useJavaHome": true
+      }
+    }
+  },
+
+  "postCreateCommand": "mvn --version && java --version && native-image --version",
+  
+  "remoteUser": "vscode",
+  
+  "mounts": [
+    "source=${localWorkspaceFolder}/.m2,target=/home/vscode/.m2,type=bind,consistency=cached"
+  ],
+
+  "forwardPorts": [8080],
+  
+  "portsAttributes": {
+    "8080": {
+      "label": "Micronaut Application",
+      "onAutoForward": "notify"
+    }
+  }
+}

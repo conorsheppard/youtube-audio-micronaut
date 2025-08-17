@@ -94,6 +94,7 @@
       <plugin>
         <groupId>io.micronaut.maven</groupId>
         <artifactId>micronaut-maven-plugin</artifactId>
+        <version>4.7.2</version>
         <configuration>
           <configFile>aot-${packaging}.properties</configFile>
         </configuration>
@@ -145,5 +146,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>
