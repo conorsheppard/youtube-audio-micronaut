@@ -8,6 +8,9 @@ clean:
 run:
 	java -jar target/youtube-audio-micronaut-0.1.jar $(link)
 
+mvn-run:
+	mvn mn:run $(link)
+
 build:
 	mvn clean package -DskipTests
 
