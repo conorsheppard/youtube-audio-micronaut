@@ -47,6 +47,9 @@ mvn mn:run -Dargs="https://www.youtube.com/watch?v=VIDEO_ID"
 # Build native image
 mvn package -Dpackaging=native-image
 
+# Build with native profile
+mvn package -Pnative
+
 # Run tests
 mvn test
 ```
@@ -60,9 +63,10 @@ mvn test
 - Located at `/home/vscode/.m2/repository` in the container
 
 ### 🐘 **GraalVM Support**
-- GraalVM is available for native image compilation
-- Uncomment the GraalVM installation in the Dockerfile if needed
-- Use `mvn package -Dpackaging=native-image` to build native executables
+- GraalVM is automatically installed and configured for native image compilation
+- Environment variables `JAVA_HOME` and `GRAALVM_HOME` are properly set
+- Use `mvn package -Dpackaging=native-image` or `mvn package -Pnative` to build native executables
+- Native image compilation is fully supported out of the box
 
 ### 🔍 **VS Code Features**
 - **Java Language Support**: Full IntelliSense and debugging

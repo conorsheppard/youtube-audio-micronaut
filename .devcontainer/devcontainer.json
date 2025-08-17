@@ -1,6 +1,8 @@
 {
   "name": "YouTube Audio Micronaut",
-  "image": "mcr.microsoft.com/devcontainers/java:21-bullseye",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
   
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
@@ -27,7 +29,7 @@
         "ms-vscode.vscode-yaml"
       ],
       "settings": {
-        "java.home": "/usr/local/openjdk-21",
+        "java.home": "/opt/graalvm-ce-java21-21.0.2",
         "java.configuration.updateBuildConfiguration": "automatic",
         "java.compile.nullAnalysis.mode": "automatic",
         "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
@@ -39,14 +41,23 @@
         "maven.terminal.customEnv": [
           {
             "environmentVariable": "JAVA_HOME",
-            "value": "/usr/local/openjdk-21"
+            "value": "/opt/graalvm-ce-java21-21.0.2"
+          },
+          {
+            "environmentVariable": "GRAALVM_HOME",
+            "value": "/opt/graalvm-ce-java21-21.0.2"
           }
         ]
       }
     }
   },
 
-  "postCreateCommand": "mvn --version && java --version",
+  "postCreateCommand": "mvn --version && java --version && native-image --version",
+  
+  "remoteEnv": {
+    "JAVA_HOME": "/opt/graalvm-ce-java21-21.0.2",
+    "GRAALVM_HOME": "/opt/graalvm-ce-java21-21.0.2"
+  },
   
   "remoteUser": "vscode",
   

@@ -41,14 +41,29 @@ else
     mvn clean compile
 fi
 
-# Check if native-image is available (optional)
+# Check if native-image is available
 echo -e "\n📋 Checking GraalVM native-image..."
 if command -v native-image &> /dev/null; then
     echo "✅ GraalVM native-image is available"
     echo "   You can build native executables with: mvn package -Dpackaging=native-image"
+    echo "   Or use the native profile: mvn package -Pnative"
 else
-    echo "ℹ️  GraalVM native-image is not available"
-    echo "   To enable it, uncomment the GraalVM installation in .devcontainer/Dockerfile"
+    echo "❌ GraalVM native-image is not available"
+    echo "   This should not happen in the Codespace - check the container build"
+fi
+
+# Check GraalVM environment
+echo -e "\n📋 Checking GraalVM environment..."
+if [ -n "$GRAALVM_HOME" ]; then
+    echo "✅ GRAALVM_HOME is set to: $GRAALVM_HOME"
+else
+    echo "❌ GRAALVM_HOME is not set"
+fi
+
+if [ -n "$JAVA_HOME" ]; then
+    echo "✅ JAVA_HOME is set to: $JAVA_HOME"
+else
+    echo "❌ JAVA_HOME is not set"
 fi
 
 # Set up useful aliases
