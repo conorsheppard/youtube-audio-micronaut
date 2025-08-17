@@ -1,8 +1,6 @@
 {
-  "name": "YouTube Audio Micronaut",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
+  "name": "YouTube Audio Micronaut (Simple)",
+  "image": "mcr.microsoft.com/devcontainers/java:21-bullseye",
   
   "features": {
     "ghcr.io/devcontainers/features/java:1": {
@@ -11,7 +9,11 @@
       "installGradle": "false"
     },
     "ghcr.io/devcontainers/features/git:1": {},
-    "ghcr.io/devcontainers/features/github-cli:1": {}
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/graalvm:1": {
+      "version": "21.0.1",
+      "variant": "ce"
+    }
   },
 
   "customizations": {
@@ -29,7 +31,6 @@
         "ms-vscode.vscode-yaml"
       ],
       "settings": {
-        "java.home": "/opt/graalvm-ce-java21-21.0.1",
         "java.configuration.updateBuildConfiguration": "automatic",
         "java.compile.nullAnalysis.mode": "automatic",
         "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
@@ -37,27 +38,12 @@
         "java.format.onType.enabled": true,
         "java.saveActions.organizeImports": true,
         "maven.executable.path": "/usr/local/bin/mvn",
-        "maven.terminal.useJavaHome": true,
-        "maven.terminal.customEnv": [
-          {
-            "environmentVariable": "JAVA_HOME",
-            "value": "/opt/graalvm-ce-java21-21.0.1"
-          },
-          {
-            "environmentVariable": "GRAALVM_HOME",
-            "value": "/opt/graalvm-ce-java21-21.0.1"
-          }
-        ]
+        "maven.terminal.useJavaHome": true
       }
     }
   },
 
   "postCreateCommand": "mvn --version && java --version && native-image --version",
-  
-  "remoteEnv": {
-    "JAVA_HOME": "/opt/graalvm-ce-java21-21.0.1",
-    "GRAALVM_HOME": "/opt/graalvm-ce-java21-21.0.1"
-  },
   
   "remoteUser": "vscode",
   

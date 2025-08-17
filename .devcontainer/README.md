@@ -25,12 +25,27 @@ This directory contains the configuration files for GitHub Codespaces, allowing 
 2. **Wait for Setup**:
    - The container will build automatically
    - Java 21 and Maven will be installed
+   - GraalVM will be installed for native compilation
    - VS Code extensions will be configured
 
 3. **Start Developing**:
    - The project will be ready to build and run
    - Use `mvn clean package` to build
    - Use `mvn mn:run` to run the application
+
+## 🔧 **Troubleshooting Container Build Issues**
+
+If you encounter container build failures (like the GraalVM download issue), you have two options:
+
+### **Option 1: Retry the Build**
+- The current configuration uses GraalVM 21.0.1 which should be more stable
+- Try rebuilding the container: Command Palette → "Codespaces: Rebuild Container"
+
+### **Option 2: Use Simple Configuration**
+- If the custom Dockerfile continues to fail, switch to the simple configuration:
+- Rename `.devcontainer/devcontainer-simple.json` to `.devcontainer/devcontainer.json`
+- This uses the official GraalVM feature which is more reliable
+- Rebuild the container after making this change
 
 ### 🔧 **Available Commands**
 
